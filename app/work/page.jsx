@@ -52,7 +52,7 @@ export const projectData = [
     title: "PMS",
     description:
       "An appraisal management system for streamlining performance reviews. Built on Rails to support fair and efficient employee evaluations.",
-    image: "/images/home/pms.png",
+    image: "/images/home/Pms.png",
     stack: ["Rails", "Bootstrap", "MongoDB"],
     width: 1915,
     height: 862,
