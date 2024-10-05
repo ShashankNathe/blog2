@@ -77,9 +77,8 @@ export default function WorkPage() {
       <h1 className="font-medium text-2xl mb-8 tracking-tighter">My work</h1>
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          On a mission to build products users{" "}
-          <Link href="/blog/developer-experience">love</Link>. Here's a summary
-          of my work so far.
+          On a mission to build products users love. Here's a summary of my work
+          so far.
         </p>
         {projectData.map((project, i) => {
           return (
