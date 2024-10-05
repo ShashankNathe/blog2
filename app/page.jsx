@@ -112,9 +112,9 @@ function ProjectLink({ img, link, name, width, height, description, stack }) {
           <div className="flex flex-col col-span-2 mt-4">
             <p className="font-medium text-neutral-900 dark:text-neutral-100 flex w-full items-center justify-between mb-2">
               {name}
-              <div className="transform text-neutral-700 transition-transform duration-300 group-hover:-rotate-12 dark:text-neutral-300">
+              <span className="transform text-neutral-700 transition-transform duration-300 group-hover:-rotate-12 dark:text-neutral-300">
                 <ArrowIcon />
-              </div>
+              </span>
             </p>
             <p className="text-neutral-400 me-2">{description}</p>
 
@@ -224,11 +224,9 @@ export default function Page() {
       </div>
       <div className="my-8 flex w-full flex-col space-y-4">
         <BlogLink
-          name="What Makes A Great Developer Experience?"
-          slug="developer-experience"
+          name="Getting Started With Next Js?"
+          slug="getting-started-with-next-js"
         />
-        <BlogLink name="What is Developer Relations?" slug="devrel" />
-        <BlogLink name="The Story of Heroku" slug="heroku" />
       </div>
       <div className="flex justify-end">
         <Badge href="/blog">View more</Badge>

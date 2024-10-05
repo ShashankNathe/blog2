@@ -1,0 +1,210 @@
+---
+title: "Getting started with next js"
+publishedAt: "2024-10-05"
+summary: "A Comprehensive Guide for Beginners."
+---
+
+Next.js has become one of the most popular React frameworks for building modern web applications. In this guide, we'll walk through everything you need to know to start building with Next.js.
+
+## What is Next.js?
+
+Next.js is a React framework that provides additional structure, features, and optimizations for your React applications. It offers:
+
+- Server-side rendering (SSR)
+- Static site generation (SSG)
+- API routes
+- File-based routing
+- Built-in image optimization
+- Zero configuration
+- TypeScript support out of the box
+
+## Prerequisites
+
+Before starting with Next.js, you should have:
+
+- Node.js installed (version 18.17 or later)
+- Basic understanding of React
+- Familiarity with JavaScript/TypeScript
+- A code editor (VS Code recommended)
+
+## Setting Up Your First Next.js Project
+
+### 1. Create a New Project
+
+Open your terminal and run:
+
+```bash
+npx create-next-app@latest my-next-app
+```
+
+During the setup, you'll be asked several questions:
+
+```
+Would you like to use TypeScript? No / Yes
+Would you like to use ESLint? No / Yes
+Would you like to use Tailwind CSS? No / Yes
+Would you like to use `src/` directory? No / Yes
+Would you like to use App Router? No / Yes
+Would you like to customize the default import alias? No / Yes
+```
+
+### 2. Navigate to Your Project
+
+```bash
+cd my-next-app
+```
+
+### 3. Start the Development Server
+
+```bash
+npm run dev
+```
+
+Your app will be running at `http://localhost:3000`
+
+## Project Structure
+
+Here's what your basic Next.js project structure looks like:
+
+```
+my-next-app/
+├── app/
+│   ├── layout.js
+│   ├── page.js
+│   └── globals.css
+├── public/
+│   └── images/
+├── components/
+├── package.json
+└── next.config.js
+```
+
+## Key Concepts
+
+### 1. Routing
+
+Next.js uses file-based routing. In the App Router:
+
+- Files named `page.js` become routes automatically
+- Folders represent URL segments
+- Dynamic routes use square brackets: `[id]`
+
+Example structure:
+
+```
+app/
+├── page.js          // Home page (/)
+├── about/
+│   └── page.js      // About page (/about)
+└── blog/
+    ├── page.js      // Blog index (/blog)
+    └── [slug]/
+        └── page.js  // Individual blog posts (/blog/post-1)
+```
+
+### 2. Data Fetching
+
+Next.js provides several ways to fetch data:
+
+```javascript
+// Server Component (default in App Router)
+async function BlogPosts() {
+  const posts = await fetch("https://api.example.com/posts");
+  const data = await posts.json();
+
+  return (
+    <div>
+      {data.map((post) => (
+        <article key={post.id}>{post.title}</article>
+      ))}
+    </div>
+  );
+}
+```
+
+### 3. Creating API Routes
+
+Create API endpoints in the `app/api` directory:
+
+```javascript
+// app/api/hello/route.js
+export async function GET() {
+  return Response.json({ message: "Hello, World!" });
+}
+```
+
+## Building Your First Page
+
+Here's a simple example of a blog post page:
+
+```javascript
+// app/blog/[slug]/page.js
+async function BlogPost({ params }) {
+  return (
+    <article className="max-w-2xl mx-auto py-8">
+      <h1 className="text-3xl font-bold">My First Blog Post</h1>
+      <div className="mt-4 prose">
+        <p>This is my first blog post using Next.js!</p>
+      </div>
+    </article>
+  );
+}
+
+export default BlogPost;
+```
+
+## Deployment
+
+When you're ready to deploy:
+
+1. Build your application:
+
+```bash
+npm run build
+```
+
+2. Deploy to platforms like Vercel (recommended for Next.js):
+
+- Connect your GitHub repository
+- Import your project
+- Automatic deployments will be set up
+
+## Best Practices
+
+1. **Use Server Components**: They're the default in App Router and offer better performance.
+
+2. **Implement Static Generation**: Use static generation when possible for better performance:
+
+```javascript
+export const revalidate = 3600; // Revalidate every hour
+```
+
+3. **Optimize Images**: Use the Next.js Image component:
+
+```javascript
+import Image from "next/image";
+
+function MyImage() {
+  return (
+    <Image src="/my-image.jpg" alt="Description" width={800} height={600} />
+  );
+}
+```
+
+## Next Steps
+
+To continue learning Next.js:
+
+1. Explore the official documentation
+2. Build a small project
+3. Learn about middleware and advanced routing
+4. Experiment with different data fetching strategies
+5. Try out different styling solutions (CSS Modules, Tailwind, etc.)
+
+Remember that Next.js is constantly evolving, so keep an eye on the official documentation for the latest features and best practices.
+
+## Conclusion
+
+Next.js provides a powerful framework for building modern web applications. With its intuitive routing, built-in optimizations, and excellent developer experience, it's an excellent choice for projects of any size.
+
+Start small, experiment with different features, and gradually build more complex applications as you become comfortable with the framework.

@@ -1,8 +1,9 @@
 import { Suspense, cache } from "react";
 import { notFound } from "next/navigation";
-import { CustomMDX } from "app/components/mdx";
-import { getBlogPosts } from "app/db/blog";
+
 import { unstable_noStore as noStore } from "next/cache";
+import { CustomMDX } from "@/app/components/mdx";
+import { getBlogPosts } from "@/app/db/blog";
 
 export async function generateMetadata({ params }) {
   let post = getBlogPosts().find((post) => post.slug === params.slug);

@@ -5,7 +5,6 @@ import { TweetComponent } from "./tweet";
 import { highlight } from "sugar-high";
 import React from "react";
 import { LiveCode } from "./sandpack";
-
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
     <th key={index}>{header}</th>
