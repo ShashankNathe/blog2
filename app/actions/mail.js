@@ -56,7 +56,7 @@ export async function sendContactEmail(formData) {
       .replace("T", " ");
 
     await turso.execute(
-      `INSERT INTO contact_forms (name, email, message, created_at) VALUES (?, ?, ?, ?)`,
+      `INSERT INTO ContactForms (name, email, message, created_at) VALUES (?, ?, ?, ?)`,
       [name, email, message, formattedISTTime]
     );
   } catch {}
