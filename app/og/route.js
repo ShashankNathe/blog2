@@ -1,16 +1,10 @@
 import { ImageResponse } from "next/og";
-import { join } from "path";
-import { readFileSync } from "fs";
 
 export const runtime = "edge";
 
 export async function GET(req) {
   const { searchParams } = req.nextUrl;
   const postTitle = searchParams.get("title");
-
-  // Read the background image as Base64
-  const bgImagePath = join(process.cwd(), "public", "og-bg.jpg");
-  const bgImageData = readFileSync(bgImagePath, { encoding: "base64" });
 
   // Fetch the font
   const font = fetch(
@@ -28,7 +22,8 @@ export async function GET(req) {
           flexDirection: "column",
           alignItems: "flex-start",
           justifyContent: "center",
-          backgroundImage: `url(data:image/jpeg;base64,${bgImageData})`,
+          backgroundColor: "#000", // You can set a fallback background color
+          backgroundImage: "url(/og-bg.jpg)", // Reference the image directly from public folder
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
