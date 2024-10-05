@@ -1,3 +1,4 @@
+import Footer from "./components/Footer";
 import { Navbar } from "./components/nav";
 import "./global.css";
 
@@ -45,10 +46,11 @@ export default function RootLayout({ children }) {
       lang="en"
       className={cx("text-black bg-white dark:text-white dark:bg-[#111010]")}
     >
-      <body className="antialiased max-w-4xl mb-40 flex flex-col md:flex-row mx-4 mt-8 lg:mx-auto">
+      <body className="antialiased max-w-4xl flex flex-col md:flex-row mx-4 mt-8 lg:mx-auto">
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
           <Navbar />
           {children}
+          <Footer />
         </main>
       </body>
     </html>
