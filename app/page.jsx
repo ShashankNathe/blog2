@@ -213,7 +213,12 @@ export default function Page() {
         })}
       </div>
       <div className="flex justify-end">
-        <Badge href="/work">View more</Badge>
+        <Link
+          href="/work"
+          className="hover:animate-border inline-flex items-center rounded border border-neutral-200 bg-neutral-50 p-1 text-sm leading-4 text-neutral-900 no-underline dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
+        >
+          View more
+        </Link>
       </div>
       <div className="prose prose-neutral dark:prose-invert">
         <p>
@@ -224,12 +229,17 @@ export default function Page() {
       </div>
       <div className="my-8 flex w-full flex-col space-y-4">
         <BlogLink
-          name="Getting Started With Next Js?"
+          name="Getting Started With Next Js"
           slug="getting-started-with-next-js"
         />
       </div>
       <div className="flex justify-end">
-        <Badge href="/blog">View more</Badge>
+        <Link
+          href="/blog"
+          className="hover:animate-border inline-flex items-center rounded border border-neutral-200 bg-neutral-50 p-1 text-sm leading-4 text-neutral-900 no-underline dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
+        >
+          View more
+        </Link>
       </div>
 
       <ContactForm />
