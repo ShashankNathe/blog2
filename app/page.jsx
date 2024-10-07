@@ -2,12 +2,9 @@ import { Suspense } from "react";
 import { unstable_noStore as noStore } from "next/cache";
 import Link from "next/link";
 import Image from "next/image";
-// import LinkedAuto1 from ''
 import LinkedAuto1 from "../public/images/home/LinkedAuto1.png";
-import Datyle from "../public/images/home/Datyle.png";
 import EmpProHome from "../public/images/home/EmpProHome.png";
 import Instabooks from "../public/images/home/Instabooks.png";
-import vercel from "../public/images/home/vercel.jpg";
 import react from "../public/images/home/react.svg";
 import node from "../public/images/home/node.svg";
 import expressjs from "../public/images/home/expressjs.svg";
@@ -17,10 +14,21 @@ import rails from "../public/images/home/rails.svg";
 import electron from "../public/images/home/electron.svg";
 import tailwind from "../public/images/home/tailwind.svg";
 import bootstrap from "../public/images/home/bootstrap.svg";
-// import { projectData } from "./db/projectlist";
+import Solar from "../public/images/home/bootstrap.svg";
 import { PreloadResources } from "./preload";
 import ContactForm from "./components/ContactForm";
+
 const projectData = [
+  {
+    title: "Solar CRM",
+    description:
+      "A multi-tenant CRM for efficient customer relationship management. Built with Next.js and Tailwind CSS, it features role-based access for secure, tailored user experiences.",
+    image: Solar,
+    link: "https://solarcrm.vercel.app/",
+    stack: ["Next.js", "Tailwind CSS", "Sqlite"],
+    width: 1918,
+    height: 866,
+  },
   {
     title: "LinkedAuto",
     description:
@@ -33,7 +41,7 @@ const projectData = [
   {
     title: "Emp Pro",
     description:
-      "A business management application covering everything a small business needs. Built on the MERN stack (MongoDB, Express, React, Node.js) for a seamless experience.",
+      "A business management application covering everything a small business needs. Built on the MERN stack (MongoDB, Express, React, Node.js).",
     image: EmpProHome,
     link: "https://emp-pro-frontend.vercel.app/",
     stack: ["MongoDB", "Express", "React", "Node.js", "Tailwind CSS"],
@@ -49,16 +57,6 @@ const projectData = [
     link: "https://instabooks.in/",
     width: 1912,
     height: 820,
-  },
-  {
-    title: "Datyle",
-    description:
-      "A tool for email verification and discovery with Stripe integration. Built on Rails to ensure accurate and secure email management.",
-    image: Datyle,
-    link: "https://app.datyle.co/",
-    stack: ["Rails", "Stripe", "Bootstrap", "MongoDB"],
-    width: 1917,
-    height: 857,
   },
 ];
 

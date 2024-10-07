@@ -3,6 +3,16 @@ import Link from "next/link";
 
 export const projectData = [
   {
+    title: "Solar CRM",
+    description:
+      "A comprehensive multi-tenant CRM solution designed for managing customer relationships efficiently. It features role-based access rights, allowing different user roles to access specific functionalities, ensuring secure and tailored user experiences. Built with Next.js, Tailwind CSS, it streamlines customer interactions and enhances productivity.",
+    image: "/images/home/Solar.png",
+    link: "https://solarcrm.vercel.app/",
+    stack: ["Next.js", "Tailwind CSS", "Sqlite"],
+    width: 1918,
+    height: 866,
+  },
+  {
     title: "LinkedAuto",
     description:
       "A LinkedIn post scheduler that lets you create posts using the Gemini API. Built with Next.js, Tailwind CSS, AWS Lambda, and EventBridge, it simplifies your LinkedIn post management.",
