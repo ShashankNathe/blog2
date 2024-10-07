@@ -14,7 +14,7 @@ import rails from "../public/images/home/rails.svg";
 import electron from "../public/images/home/electron.svg";
 import tailwind from "../public/images/home/tailwind.svg";
 import bootstrap from "../public/images/home/bootstrap.svg";
-import Solar from "../public/images/home/bootstrap.svg";
+import Solar from "../public/images/home/Solar.png";
 import { PreloadResources } from "./preload";
 import ContactForm from "./components/ContactForm";
 
