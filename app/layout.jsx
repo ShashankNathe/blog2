@@ -19,6 +19,14 @@ export const metadata = {
     siteName: "Shashank Nathe",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "../public/og.png",
+        width: 1000,
+        height: 525,
+        alt: "Shashank Nathe Logo",
+      },
+    ],
   },
   robots: {
     index: true,

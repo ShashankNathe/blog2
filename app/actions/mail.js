@@ -40,11 +40,13 @@ export async function sendContactEmail(formData) {
       pass: process.env.SMTP_PASS,
     },
   });
+
+  const messageContent = `Email: ${email}\n\nMessage: ${message}`;
   const mailOptions = {
     from: process.env.SMTP_USER,
     to: process.env.OWNER_EMAIL,
     subject: `Contact form submission from ${name}`,
-    text: message,
+    text: messageContent,
   };
   try {
     const now = new Date();
