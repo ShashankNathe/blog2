@@ -4,6 +4,7 @@ import { Navbar } from "./components/nav";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { SandpackCSS } from "./blog/[slug]/sandpack";
+import og from "../public/og.png";
 
 export const metadata = {
   metadataBase: new URL("https://shashanknathe.com"),
@@ -21,7 +22,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "../public/og.png",
+        url: og.src,
         width: 1000,
         height: 525,
         alt: "Shashank Nathe Logo",
@@ -50,7 +51,6 @@ export const metadata = {
 };
 
 const cx = (...classes) => classes.filter(Boolean).join(" ");
-
 export default function RootLayout({ children }) {
   return (
     <html
