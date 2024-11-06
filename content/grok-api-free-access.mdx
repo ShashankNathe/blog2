@@ -1,0 +1,243 @@
+---
+title: "xAI Developer Guide: Building with the Free Grok API"
+publishedAt: "2024-11-06"
+summary: "xAI has announced the public launch of their API, offering developers direct access to their advanced language models"
+---
+
+## Introduction
+
+xAI has launched their API with a generous free tier, giving developers access to Grok, a powerful language model inspired by The Hitchhiker's Guide to the Galaxy. This guide will show you how to get started using both curl and Node.js.
+
+## Quick Setup
+
+### 1. Getting Your API Key
+
+- Sign up at api.x.ai
+- Receive $25 in free credits
+- No credit card required during beta
+
+### 2. Making Your First API Call
+
+You can interact with the API using either curl or the OpenAI-compatible SDK.
+
+#### Using Curl
+
+```bash
+curl https://api.x.ai/v1/chat/completions \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer $XAI_API_KEY" \
+-d '{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are Grok, a chatbot inspired by the Hitchhikers Guide to the Galaxy."
+    },
+    {
+      "role": "user",
+      "content": "What is the meaning of life, the universe, and everything?"
+    }
+  ],
+  "model": "grok-beta",
+  "stream": false,
+  "temperature": 0
+}'
+```
+
+#### Using Node.js with OpenAI SDK
+
+```javascript
+import OpenAI from "openai";
+
+const openai = new OpenAI({
+  apiKey: "<api key>",
+  baseURL: "https://api.x.ai/v1",
+});
+
+const completion = await openai.chat.completions.create({
+  model: "grok-beta",
+  messages: [
+    {
+      role: "system",
+      content:
+        "You are Grok, a chatbot inspired by the Hitchhiker's Guide to the Galaxy.",
+    },
+    {
+      role: "user",
+      content: "What is the meaning of life, the universe, and everything?",
+    },
+  ],
+});
+
+console.log(completion.choices[0].message);
+```
+
+## Core Features
+
+### API Parameters
+
+```javascript
+{
+  "model": "grok-beta",      // The model to use
+  "messages": [],            // Array of message objects
+  "stream": false,           // Enable/disable streaming
+  "temperature": 0           // Controls randomness (0-1)
+}
+```
+
+### Message Structure
+
+```javascript
+{
+  "role": "system" | "user" | "assistant",  // Message role
+  "content": string                         // Message content
+}
+```
+
+## Implementation Examples
+
+### Basic Chat Implementation
+
+```javascript
+async function chatWithGrok(userMessage) {
+  const openai = new OpenAI({
+    apiKey: process.env.XAI_API_KEY,
+    baseURL: "https://api.x.ai/v1",
+  });
+
+  try {
+    const completion = await openai.chat.completions.create({
+      model: "grok-beta",
+      messages: [
+        {
+          role: "system",
+          content: "You are Grok, a helpful AI assistant.",
+        },
+        {
+          role: "user",
+          content: userMessage,
+        },
+      ],
+    });
+
+    return completion.choices[0].message;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}
+```
+
+### With Error Handling
+
+```javascript
+async function robustChatWithGrok(userMessage, maxRetries = 3) {
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      return await chatWithGrok(userMessage);
+    } catch (error) {
+      if (error.status === 429) {
+        // Rate limit error
+        const waitTime = Math.pow(2, attempt) * 1000;
+        await new Promise((resolve) => setTimeout(resolve, waitTime));
+        continue;
+      }
+      throw error;
+    }
+  }
+  throw new Error("Max retries exceeded");
+}
+```
+
+## Best Practices
+
+### 1. Environment Variables
+
+```javascript
+// .env
+XAI_API_KEY = your - api - key - here;
+
+// code
+import dotenv from "dotenv";
+dotenv.config();
+```
+
+### 2. Rate Limiting
+
+```javascript
+import rateLimit from "express-rate-limit";
+
+const limiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 50, // limit each IP to 50 requests per minute
+});
+
+app.use("/api/chat", limiter);
+```
+
+### 3. Error Handling
+
+```javascript
+try {
+  const response = await openai.chat.completions.create({
+    model: "grok-beta",
+    messages: messages,
+  });
+} catch (error) {
+  if (error.response) {
+    console.error(error.response.status);
+    console.error(error.response.data);
+  } else {
+    console.error(error.message);
+  }
+}
+```
+
+## Security Tips
+
+1. **Never expose your API key**
+
+   - Use environment variables
+   - Add .env to .gitignore
+   - Rotate keys regularly
+
+2. **Validate Input**
+
+```javascript
+function sanitizeInput(userInput) {
+  if (typeof userInput !== "string") {
+    throw new Error("Invalid input type");
+  }
+  return userInput.trim().slice(0, 1000); // Limit length
+}
+```
+
+## Getting Help
+
+- Documentation: docs.x.ai
+- Support: support@x.ai
+- Community Forum: community.x.ai
+
+## Next Steps
+
+1. Set up your development environment
+2. Make test API calls
+3. Implement error handling
+4. Add rate limiting
+5. Deploy your application
+
+## Conclusion
+
+The xAI API offers a powerful way to integrate Grok into your applications. With the free tier and straightforward implementation options, you can start building immediately.
+
+Remember to:
+
+- Keep your API key secure
+- Implement proper error handling
+- Monitor your usage
+- Follow rate limiting guidelines
+
+Happy building!
+
+---
+
+_For the latest updates and detailed documentation, visit the official xAI documentation._

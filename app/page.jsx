@@ -227,6 +227,14 @@ export default function Page() {
       </div>
       <div className="my-8 flex w-full flex-col space-y-4">
         <BlogLink
+          name="xAI Developer Guide: Building with the Free Grok API"
+          slug="grok-api-free-access"
+        />
+        <BlogLink
+          name="How AI Controls Your Computer"
+          slug="how-ai-controls-your-computers"
+        />
+        <BlogLink
           name="Getting Started With Next Js"
           slug="getting-started-with-next-js"
         />
