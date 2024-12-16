@@ -127,7 +127,7 @@ function ProjectLink({ img, link, name, width, height, description, stack }) {
 function BlogLink({ slug, name }) {
   return (
     <div className="group">
-      <a
+      <Link
         href={`/blog/${slug}`}
         className="flex w-full items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-3 py-4 dark:border-neutral-700 dark:bg-neutral-800"
       >
@@ -139,7 +139,7 @@ function BlogLink({ slug, name }) {
         <div className="transform text-neutral-700 transition-transform duration-300 group-hover:-rotate-12 dark:text-neutral-300">
           <ArrowIcon />
         </div>
-      </a>
+      </Link>
     </div>
   );
 }
@@ -227,16 +227,16 @@ export default function Page() {
       </div>
       <div className="my-8 flex w-full flex-col space-y-4">
         <BlogLink
+          name="React 19 is Production Ready: Essential Features You Need to Know"
+          slug="react-19-for-production"
+        />
+        <BlogLink
           name="xAI Developer Guide: Building with the Free Grok API"
           slug="grok-api-free-access"
         />
         <BlogLink
           name="How AI Controls Your Computer"
           slug="how-ai-controls-your-computers"
-        />
-        <BlogLink
-          name="Getting Started With Next Js"
-          slug="getting-started-with-next-js"
         />
       </div>
       <div className="flex justify-end">
