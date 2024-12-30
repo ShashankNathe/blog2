@@ -1,0 +1,256 @@
+---
+title: "How to Build Forms Properly in Next.js using React 19 | Complete Guide"
+publishedAt: "2024-12-30"
+summary: "Learn how to create professional forms in Next.js using React 19's latest features like useActionState, Server Actions, and shadcn/ui components."
+---
+
+_Learn how to create professional forms in Next.js using React 19's latest features like useActionState, Server Actions, and shadcn/ui components. This comprehensive guide covers form handling, pending states, and toast notifications for a seamless user experience._
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Understanding useActionState](#understanding-useactionstate)
+- [Setting Up Server Actions](#setting-up-server-actions)
+- [Building the Form Component](#building-the-form-component)
+- [How to Show Pending State on Button](#how-to-show-pending-state-on-button)
+- [Implementing Toast Notifications](#implementing-toast-notifications)
+- [Best Practices and Error Handling](#best-practices-and-error-handling)
+- [Conclusion](#conclusion)
+
+## Introduction
+
+Building forms in Next.js has evolved significantly with React 19's introduction of new features like `useActionState`. In this guide, we'll explore how to create professional-grade forms with proper loading states, server actions, and user feedback. We'll focus on creating a product creation form that demonstrates these concepts in action.
+
+## Understanding useActionState
+
+The `useActionState` hook is a powerful new feature in React 19 that simplifies form handling. It returns an array with three important elements:
+
+1. **Current State**: Initially set to the provided initial state. After form submission, it's updated to the action's return value.
+2. **Form Action**: A new action function to be passed to the form's `action` prop.
+3. **Pending State**: A boolean indicating whether the form submission is processing.
+
+Here's how it works in practice:
+
+```jsx
+const [state, submitAction, isPending] = useActionState(
+  async (currentState, formData) => {
+    // currentState: Contains the previous state
+    // formData: The form data being submitted
+    const result = await processForm(formData);
+    return result; // This becomes the new state
+  },
+  null // Initial state
+);
+```
+
+## Setting Up Server Actions
+
+First, let's create our server action for handling form submissions. Create a new file `actions/addProduct.js`:
+
+```jsx
+"use server";
+
+import { revalidatePath } from "next/cache";
+
+const addProduct = async (formData) => {
+  try {
+    // Validate form data
+    const productName = formData.get("productName");
+    const price = formData.get("price");
+    const description = formData.get("description");
+
+    if (!productName || !price || !description) {
+      return {
+        success: false,
+        message: "All fields are required",
+        status: "error",
+      };
+    }
+
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    // Revalidate the products page
+    revalidatePath("/products");
+
+    return {
+      success: true,
+      message: "Product added successfully",
+      status: "success",
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: "Failed to add product",
+      status: "error",
+    };
+  }
+};
+
+export default addProduct;
+```
+
+## Building the Form Component
+
+Now, let's create our form component using shadcn/ui components and React 19's `useActionState`. Create a new file `app/products/new/page.jsx`:
+
+```jsx
+"use client";
+
+import { useActionState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import addProduct from "@/actions/addProduct";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+
+export default function NewProductPage() {
+  const { toast } = useToast();
+  const [state, submitAction, isPending] = useActionState(
+    async (currentState, formData) => {
+      const result = await addProduct(formData);
+
+      if (result.status === "error") {
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: result.message,
+        });
+      } else {
+        toast({
+          title: "Success",
+          description: result.message,
+        });
+      }
+
+      return result;
+    },
+    null
+  );
+
+  return (
+    <Card className="w-full max-w-md mx-auto">
+      <CardHeader>
+        <CardTitle>Create Product</CardTitle>
+        <CardDescription>Enter your product information below</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form action={submitAction} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="productName">Product Name</Label>
+            <Input
+              id="productName"
+              name="productName"
+              placeholder="Enter product name"
+              className={state?.errors?.productName ? "border-red-500" : ""}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="price">Price</Label>
+            <Input
+              id="price"
+              name="price"
+              type="number"
+              placeholder="0.00"
+              min="0"
+              step="0.01"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="description">Description</Label>
+            <Input
+              id="description"
+              name="description"
+              placeholder="Product description"
+            />
+          </div>
+
+          <Button type="submit" className="w-full" disabled={isPending}>
+            {isPending ? "Adding Product..." : "Add Product"}
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
+  );
+}
+```
+
+## How to Show Pending State on Button
+
+One of the key advantages of using `useActionState` is the built-in pending state handling. The hook provides an `isPending` boolean that we can use to show loading states in our UI. Here's how we implement it on our submit button:
+
+```jsx
+<Button
+  type="submit"
+  className="w-full"
+  disabled={isPending} // Disable button during submission
+>
+  {isPending ? "Adding Product..." : "Add Product"} // Change button text based
+  on state
+</Button>
+```
+
+This creates a better user experience by:
+
+1. Disabling the button during form submission to prevent double submissions
+2. Showing a loading message to indicate the action is in progress
+3. Re-enabling the button once the action is complete
+
+## Implementing Toast Notifications
+
+We're using shadcn/ui's toast component for displaying notifications. Make sure you have the toast provider set up in your layout:
+
+```jsx
+// app/layout.jsx
+import { Toaster } from "@/components/ui/toaster";
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        {children}
+        <Toaster />
+      </body>
+    </html>
+  );
+}
+```
+
+## Best Practices and Error Handling
+
+Here are some key features and best practices we've implemented:
+
+1. **State Management**: Using `useActionState` for form state handling
+2. **Loading States**: Clear pending state indication during form submission
+3. **User Feedback**: Toast notifications for success and error states
+4. **Form Validation**: Server-side validation with error messages
+5. **UI Components**: Leveraging shadcn/ui for consistent design
+6. **Accessibility**: Proper labels and ARIA attributes
+7. **Error Boundaries**: Proper error handling and user feedback
+
+## Conclusion
+
+In this guide, we've built a modern form handling system in Next.js using React 19's latest features. The combination of Server Actions, `useActionState`, and shadcn/ui components creates a powerful and user-friendly form experience. This approach provides:
+
+- Efficient state management with `useActionState`
+- Clear loading states during form submission
+- Server-side processing with Server Actions
+- Beautiful UI components with shadcn/ui
+- Accessible form elements
+- Clear user feedback with toast notifications
+
+## Additional Resources
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [React 19 Release Notes](https://react.dev/blog)
+- [shadcn/ui Components](https://ui.shadcn.com)
+- [Server Actions Documentation](https://nextjs.org/docs/app/api-reference/functions/server-actions)

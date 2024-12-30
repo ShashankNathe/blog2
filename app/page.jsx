@@ -227,16 +227,16 @@ export default function Page() {
       </div>
       <div className="my-8 flex w-full flex-col space-y-4">
         <BlogLink
+          name="How to Build Forms Properly in Next.js using React 19 | Complete Guide"
+          slug="how-to-build-forms-in-next-js"
+        />
+        <BlogLink
           name="React 19 is Production Ready: Essential Features You Need to Know"
           slug="react-19-for-production"
         />
         <BlogLink
           name="xAI Developer Guide: Building with the Free Grok API"
           slug="grok-api-free-access"
-        />
-        <BlogLink
-          name="How AI Controls Your Computer"
-          slug="how-ai-controls-your-computers"
         />
       </div>
       <div className="flex justify-end">
