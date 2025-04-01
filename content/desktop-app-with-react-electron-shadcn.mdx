@@ -1,0 +1,177 @@
+---
+title: "Building Modern Desktop Applications with React, Electron, and Shadcn UI"
+publishedAt: "2025-04-01"
+summary: "Learn how to build beautiful cross-platform desktop applications using React, Electron, and Shadcn UI."
+---
+
+In today's software development landscape, creating beautiful, functional desktop applications doesn't have to mean abandoning the web technologies you already know and love. Thanks to frameworks like Electron, you can leverage your React skills to build powerful desktop apps for Windows, macOS, and Linux. In this guide, we'll explore how to create stunning desktop applications using React, Electron, and the sleek Shadcn UI component library.
+
+## Why Build Desktop Apps with Web Technologies?
+
+Before diving into the technical details, let's consider why you might want to build desktop applications using web technologies:
+
+1. **Leverage existing skills** - Use your React, TypeScript, and web development knowledge
+2. **Cross-platform compatibility** - Build once, deploy to Windows, macOS, and Linux
+3. **Modern UI frameworks** - Take advantage of beautiful component libraries like Shadcn UI
+4. **Rapid development** - Accelerate your workflow with hot reloading and modern tooling
+
+## The Perfect Stack for Modern Desktop Apps
+
+Based on the electron-shadcn template, here's an optimal technology stack for building beautiful desktop applications:
+
+### Core Technologies
+
+- **Electron** - The framework that lets you build desktop apps with JavaScript, HTML, and CSS
+- **React** - The popular JavaScript library for building user interfaces
+- **Vite** - Next-generation frontend tooling with lightning-fast HMR (Hot Module Replacement)
+- **TypeScript** - Add static typing to your JavaScript for better developer experience
+
+### UI Components and Styling
+
+- **Shadcn UI** - A collection of reusable, accessible components built with Radix UI and Tailwind CSS
+- **Tailwind CSS** - Utility-first CSS framework for rapid UI development
+- **Lucide** - Beautiful, consistent icon set that integrates perfectly with React
+- **Geist** - Clean, modern font by Vercel for improved readability
+
+### State Management and Routing
+
+- **TanStack Query (React Query)** - Data fetching and state management for React applications
+- **TanStack Router** - Type-safe routing for React applications
+- **i18next** - Internationalization framework for multiple language support
+
+### Development Experience
+
+- **SWC** - Super-fast JavaScript/TypeScript compiler
+- **ESLint 9** - Linting to catch errors and enforce code style
+- **Prettier** - Code formatting to maintain consistency
+- **Zod** - TypeScript-first schema validation
+
+### Testing and Quality Assurance
+
+- **Vitest** - Unit testing framework compatible with Vite
+- **Playwright** - End-to-end testing for your application
+- **React Testing Library** - Test your React components in a user-centric way
+
+## Getting Started with electron-shadcn
+
+The electron-shadcn template provides everything you need to start building beautiful desktop applications. Let's see how to get up and running:
+
+### 1. Clone the Template
+
+```bash
+git clone https://github.com/LuanRoger/electron-shadcn.git my-desktop-app
+cd my-desktop-app
+```
+
+Alternatively, you can use it as a template directly from GitHub.
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Start the Development Server
+
+```bash
+npm run start
+```
+
+This will launch your app in development mode with hot reloading enabled, so you can see your changes instantly.
+
+## Understanding the Project Structure
+
+The electron-shadcn template comes with a well-organized directory structure:
+
+```
+src/
+├── assets/          # Images, fonts, and other static assets
+├── components/      # Reusable UI components
+│   ├── template/    # Template-specific components
+│   └── ui/          # Shadcn UI components
+├── helpers/         # Helper functions and utilities
+│   └── ipc/         # IPC communication between main and renderer processes
+├── layout/          # Layout components for consistent UI structure
+├── lib/             # Libraries and utility functions
+├── pages/           # Application pages and routes
+├── style/           # Global styles and theme configuration
+└── tests/           # Unit and end-to-end tests
+```
+
+## Building Your UI with Shadcn UI
+
+One of the standout features of this stack is the integration of Shadcn UI, which provides beautiful, accessible components that can be customized to match your brand.
+
+Shadcn UI components are added to your project's `src/components/ui/` directory, giving you full control over their implementation and styling.
+
+![Demo of electron-shadcn](https://raw.githubusercontent.com/LuanRoger/electron-shadcn/refs/heads/main/images/demo.gif)
+
+## IPC Communication in Electron
+
+Electron applications consist of two processes:
+
+1. **Main Process** - Controls the application lifecycle and native functionality
+2. **Renderer Process** - Handles the UI and user interaction
+
+To communicate between these processes, electron-shadcn provides helper functions in the `src/helpers/ipc/` directory. These include implementations for theme management and window controls (minimize, maximize, close) for the custom title bar.
+
+## Advanced Features
+
+### Custom Title Bar
+
+The template comes with a custom title bar implementation, giving your app a polished, native look while allowing for complete customization.
+
+### Theme Switching
+
+Dark mode support is built-in, with a theme toggler component and IPC communication to persist the user's preference.
+
+### Internationalization
+
+With i18next integration, your app can support multiple languages out of the box.
+
+## Testing Your Application
+
+The template includes comprehensive testing capabilities:
+
+- **Unit Tests** with Vitest and React Testing Library
+- **End-to-End Tests** with Playwright
+
+Run tests with:
+
+```bash
+# Run unit tests
+npm run test:unit
+
+# Run end-to-end tests
+npm run test:e2e
+
+# Run all tests
+npm run test:all
+```
+
+## Packaging and Distribution
+
+When your app is ready for distribution, electron-shadcn uses Electron Forge to package it for different platforms:
+
+```bash
+# Create a development package
+npm run package
+
+# Create distributable installers (.exe, .dmg, etc.)
+npm run make
+
+# Publish your app for updates
+npm run publish
+```
+
+## Conclusion
+
+Building desktop applications with React, Electron, and Shadcn UI offers the best of both worlds: the rich ecosystem and developer experience of web development combined with the power and integration capabilities of native desktop applications.
+
+The electron-shadcn template provides an excellent starting point with a carefully selected set of tools and libraries that work well together. Whether you're building an internal tool, a productivity app, or a creative software product, this stack gives you everything you need to create beautiful, functional desktop applications.
+
+Start building your next desktop app today with electron-shadcn, and leverage the power of modern web technologies to create experiences your users will love.
+
+---
+
+_Keywords: Electron, React, Shadcn UI, Desktop Application Development, JavaScript Desktop Apps, Cross-platform Desktop Apps, Tailwind CSS, TypeScript, Vite, Modern Desktop UI, Custom Components, Electron Forge, React 19_
