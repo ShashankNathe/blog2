@@ -14,6 +14,7 @@ import rails from "../public/images/home/rails.svg";
 import electron from "../public/images/home/electron.svg";
 import tailwind from "../public/images/home/tailwind.svg";
 import bootstrap from "../public/images/home/bootstrap.svg";
+import php from "../public/images/home/php.png";
 import Solar from "../public/images/home/Solar.png";
 import { PreloadResources } from "./preload";
 import ContactForm from "./components/ContactForm";
@@ -256,6 +257,7 @@ export default function Page() {
 const Skills = () => {
   const skills = [
     { name: "Next.js", logo: "/next-logo.svg" },
+    { name: "PHP", logo: php },
     { name: "React", logo: react },
     { name: "Node Js", logo: node },
     { name: "Express", logo: expressjs },
