@@ -41,8 +41,7 @@ const projectData = [
   },
   {
     title: "Emp Pro",
-    description:
-      "A business management application covering everything a small business needs. Built on the MERN stack (MongoDB, Express, React, Node.js).",
+    description: "A business management application covering everything a small business needs. Built on the MERN stack (MongoDB, Express, React, Node.js).",
     image: EmpProHome,
     link: "https://emp-pro-frontend.vercel.app/",
     stack: ["MongoDB", "Express", "React", "Node.js", "Tailwind CSS"],
@@ -51,8 +50,7 @@ const projectData = [
   },
   {
     title: "Instabooks",
-    description:
-      "An intuitive bookkeeping app designed for small businesses. Developed with Rails, MongoDB, and Bootstrap for easy financial management.",
+    description: "An intuitive bookkeeping app designed for small businesses. Developed with Rails, MongoDB, and Bootstrap for easy financial management.",
     image: Instabooks,
     stack: ["Rails", "MongoDB", "Bootstrap"],
     link: "https://instabooks.in/",
@@ -74,17 +72,8 @@ function Badge(props) {
 
 function ArrowIcon() {
   return (
-    <svg
-      width="12"
-      height="12"
-      viewBox="0 0 12 12"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z"
-        fill="currentColor"
-      />
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z" fill="currentColor" />
     </svg>
   );
 }
@@ -99,14 +88,7 @@ function ProjectLink({ img, link, name, width, height, description, stack }) {
       >
         <div className="items-center space-x-3">
           <div className=" relative h-26 col-span-1">
-            <Image
-              alt={name}
-              src={img}
-              height={width}
-              width={height}
-              className="h-26 w-26 border rounded border-neutral-200 dark:border-neutral-700"
-              priority
-            />
+            <Image alt={name} src={img} height={width} width={height} className="h-26 w-26 border rounded border-neutral-200 dark:border-neutral-700" priority />
           </div>
           <div className="flex flex-col col-span-2 mt-4">
             <p className="font-medium text-neutral-900 dark:text-neutral-100 flex w-full items-center justify-between mb-2">
@@ -133,9 +115,7 @@ function BlogLink({ slug, name }) {
         className="flex w-full items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-3 py-4 dark:border-neutral-700 dark:bg-neutral-800"
       >
         <div className="flex flex-col">
-          <p className="font-medium text-neutral-900 dark:text-neutral-100">
-            {name}
-          </p>
+          <p className="font-medium text-neutral-900 dark:text-neutral-100">{name}</p>
         </div>
         <div className="transform text-neutral-700 transition-transform duration-300 group-hover:-rotate-12 dark:text-neutral-300">
           <ArrowIcon />
@@ -149,9 +129,7 @@ export default function Page() {
   return (
     <section>
       <PreloadResources />
-      <h1 className="text-2xl font-medium tracking-tighter">
-        Hey, I'm Shashank 👋
-      </h1>
+      <h1 className="text-2xl font-medium tracking-tighter">Hey, I'm Shashank 👋</h1>
       <p className="text-neutral-500 mb-8">Software Developer</p>
       <p className="prose prose-neutral dark:prose-invert text-base">
         {`I currently work as the Lead Developer at `}
@@ -160,24 +138,12 @@ export default function Page() {
         <br />
         {`I love working with `}
         <Badge href="https://nextjs.org">
-          <img
-            alt="Next.js logomark"
-            src="/next-logo.svg"
-            className="!mr-1"
-            width="14"
-            height="14"
-          />
+          <img alt="Next.js logomark" src="/next-logo.svg" className="!mr-1" width="14" height="14" />
           Next.js
         </Badge>
         {` & `}
         <Badge href="https://react.dev">
-          <svg
-            width="14"
-            height="14"
-            role="img"
-            aria-label="React logo"
-            className="!mr-1"
-          >
+          <svg width="14" height="14" role="img" aria-label="React logo" className="!mr-1">
             <use href="/sprite.svg#react" />
           </svg>
           React
@@ -190,24 +156,14 @@ export default function Page() {
 
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          I create a wide range of projects, including web apps, desktop apps,
-          and Chrome extensions, using technologies like JavaScript, Ruby,
-          React, Next.js, and more. You can explore some of my latest projects
-          below.
+          I create a wide range of projects, including web apps, desktop apps, and Chrome extensions, using technologies like JavaScript, Ruby, React, Next.js, and more. You can
+          explore some of my latest projects below.
         </p>
       </div>
       <div className="my-8  w-full gap-4 grid md:grid-cols-2">
         {projectData.map((project, i) => {
           return (
-            <ProjectLink
-              key={i}
-              img={project.image}
-              width={project.width}
-              height={project.heigth}
-              name={project.title}
-              link={project.link}
-              description={project.description}
-            />
+            <ProjectLink key={i} img={project.image} width={project.width} height={project.heigth} name={project.title} link={project.link} description={project.description} />
           );
         })}
       </div>
@@ -220,25 +176,12 @@ export default function Page() {
         </Link>
       </div>
       <div className="prose prose-neutral dark:prose-invert">
-        <p>
-          Through my blog you'll find writing about technologies I'm interested
-          in at the time, or how I'm learning and growing in my career, sharing
-          knowledge along the way.
-        </p>
+        <p>Through my blog you'll find writing about technologies I'm interested in at the time, or how I'm learning and growing in my career, sharing knowledge along the way.</p>
       </div>
       <div className="my-8 flex w-full flex-col space-y-4">
-        <BlogLink
-          name="Building Modern Desktop Applications with React, Electron, and Shadcn UI"
-          slug="desktop-app-with-react-electron-shadcn"
-        />
-        <BlogLink
-          name="xAI Grok API: A Comprehensive Guide to Models, Pricing, and Free Credits"
-          slug="xai-grok-api-comprehensive-guide"
-        />
-        <BlogLink
-          name="How to Build Forms Properly in Next.js using React 19 | Complete Guide"
-          slug="how-to-build-forms-in-next-js"
-        />
+        <BlogLink name="Building Modern Desktop Applications with React, Electron, and Shadcn UI" slug="desktop-app-with-react-electron-shadcn" />
+        <BlogLink name="xAI Grok API: A Comprehensive Guide to Models, Pricing, and Free Credits" slug="xai-grok-api-comprehensive-guide" />
+        <BlogLink name="How to Build Forms Properly in Next.js using React 19 | Complete Guide" slug="how-to-build-forms-in-next-js" />
       </div>
       <div className="flex justify-end">
         <Link
@@ -276,17 +219,8 @@ const Skills = () => {
           <Badge key={skill.name}>
             {/* <BorderBeam /> */}
             <div className="flex flex-col items-center justify-center w-full text-lg md:text-2xl py-4 md:py-6">
-              <Image
-                alt={skill.name}
-                src={skill.logo}
-                className="!mr-1 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16"
-                width="54"
-                height="54"
-                priority
-              />
-              <h2 className="text-lg font-medium tracking-tighter mt-4">
-                {skill.name}
-              </h2>
+              <Image alt={skill.name} src={skill.logo} className="!mr-1 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16" width="54" height="54" priority />
+              <h2 className="text-lg font-medium tracking-tighter mt-4">{skill.name}</h2>
             </div>
           </Badge>
         ))}
